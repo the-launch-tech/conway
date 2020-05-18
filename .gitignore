@@ -1,0 +1,12 @@
+/client/node_modules
+/client/public/1.index.js
+/client/public/1.index.js.LICENSE.txt
+/client/public/1.index.js.map
+/client/public/index.js
+/client/public/index.js.map
+/client/public/main.css
+/client/public/main.css.map
+/server/build
+/server/node_modules
+.gitignore
+.env

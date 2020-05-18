@@ -1,0 +1,271 @@
+$bgSecondary: #efefef;
+$warning: #ffc583;
+$alert: #ff4141;
+$success: #56bf73;
+$good: #75c2dc;
+$text: #4f4f4f;
+$bgPrimary: #f9f9f9;
+$bgTertiary: #dedede;
+$fontFamily: Helvetica;
+
+.container {
+  max-width: 1170px;
+  margin: auto;
+
+  &.wrapper {
+  }
+
+  &.content {
+    padding: 1rem 2rem;
+  }
+
+  &.block {
+  }
+
+  &.flex {
+    display: flex;
+  }
+
+  &.flex-column {
+    flex-direction: column;
+  }
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+
+  &.align-start {
+    align-items: flex-start;
+  }
+}
+
+.header {
+  padding: 2rem;
+
+  .title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0 auto;
+    color: $text;
+    font-family: $fontFamily;
+  }
+}
+
+.settings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: $bgSecondary;
+
+  h5 {
+    color: $text;
+    font-family: $fontFamily;
+  }
+
+  .settings-row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .settings-cell {
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      .settings-label {
+        font-family: $fontFamily;
+        color: $text;
+        font-size: 0.8rem;
+      }
+
+      .settings-input {
+        width: auto;
+        height: 40px;
+        border-radius: 4px;
+        padding: 0 1rem;
+        border: solid 1px $bgTertiary;
+        color: $text;
+        width: auto;
+        outline: none;
+      }
+    }
+  }
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  border: solid 1px $bgTertiary;
+
+  .row {
+    width: 100%;
+    height: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    .cell {
+      width: 12px;
+      height: 12px;
+      background-color: transparent;
+      border: solid 1px $bgTertiary;
+      transition: 0.2s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: transparentize($good, 0.5);
+      }
+
+      &:active {
+        background-color: $good;
+      }
+
+      &.active-cell {
+        background-color: $good;
+      }
+    }
+  }
+}
+
+.btn {
+  border: solid 2px;
+  outline: none;
+  transition: 0.2s;
+  border-radius: 4px;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  font-weight: 200;
+  cursor: pointer;
+  font-family: $fontFamily;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &.run-action {
+    margin-top: 1rem;
+    margin-right: 2rem;
+  }
+
+  &.stop-action {
+    margin-top: 1rem;
+    margin-right: 2rem;
+  }
+
+  &.clear-action {
+    margin-top: 1rem;
+  }
+
+  &.settings-action {
+    margin-left: 1rem;
+  }
+
+  &.btn-blue {
+    color: $bgPrimary;
+    border-color: $good;
+    background-color: $good;
+
+    &:hover {
+      color: $good;
+      border-color: $good;
+      background-color: $bgPrimary;
+    }
+
+    &:active {
+      color: transparentize($good, 0.7);
+      border-color: transparentize($good, 0.7);
+      background-color: $bgPrimary;
+    }
+
+    &:disabled {
+      color: $good;
+      border-color: transparentize($good, 0.6);
+      background-color: transparentize($good, 0.9);
+    }
+  }
+
+  &.btn-orange {
+    color: $bgPrimary;
+    border-color: $warning;
+    background-color: $warning;
+
+    &:hover {
+      color: $warning;
+      border-color: $warning;
+      background-color: $bgPrimary;
+    }
+
+    &:active {
+      color: transparentize($warning, 0.7);
+      border-color: transparentize($warning, 0.7);
+      background-color: $bgPrimary;
+    }
+
+    &:disabled {
+      color: $warning;
+      border-color: transparentize($warning, 0.6);
+      background-color: transparentize($warning, 0.9);
+    }
+  }
+
+  &.btn-green {
+    color: $bgPrimary;
+    border-color: $success;
+    background-color: $success;
+
+    &:hover {
+      color: $success;
+      border-color: $success;
+      background-color: $bgPrimary;
+    }
+
+    &:active {
+      color: transparentize($success, 0.7);
+      border-color: transparentize($success, 0.7);
+      background-color: $bgPrimary;
+    }
+
+    &:disabled {
+      color: $success;
+      border-color: transparentize($success, 0.6);
+      background-color: transparentize($success, 0.9);
+    }
+  }
+
+  &.btn-red {
+    color: $bgPrimary;
+    border-color: $alert;
+    background-color: $alert;
+
+    &:hover {
+      color: $alert;
+      border-color: $alert;
+      background-color: $bgPrimary;
+    }
+
+    &:active {
+      color: transparentize($alert, 0.7);
+      border-color: transparentize($alert, 0.7);
+      background-color: $bgPrimary;
+    }
+
+    &:disabled {
+      color: $alert;
+      border-color: transparentize($alert, 0.6);
+      background-color: transparentize($alert, 0.9);
+    }
+  }
+}

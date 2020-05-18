@@ -1,0 +1,10 @@
+import { reduxTypeConstant } from '../../tsconf'
+
+export const INCREMENT_STEP: reduxTypeConstant = 'GAME.INCREMENT_STEP'
+export const TOGGLE_GAME_ACTIVE: reduxTypeConstant = 'GAME.TOGGLE_GAME_ACTIVE'
+export const CLEAR_MEMO: reduxTypeConstant = 'GAME.CLEAR_MEMO'
+export const UPDATE_MEMO: reduxTypeConstant = 'GAME.UPDATE_MEMO'
+export const DELETE_MEMO: reduxTypeConstant = 'GAME.DELETE_MEMO'
+export const SET_MEMO: reduxTypeConstant = 'GAME.SET_MEMO'
+export const UPDATE_GAME_HISTORY: reduxTypeConstant = 'GAME.UPDATE_GAME_HISTORY'
+export const UPDATE_HISTORY: reduxTypeConstant = 'GAME.UPDATE_HISTORY'
