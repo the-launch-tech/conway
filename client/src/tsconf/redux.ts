@@ -1,9 +1,9 @@
 import { AnyAction } from 'redux'
 
-import { IGameMemo, IGameCoordinates, IGameHistory } from './game'
+import { IGameMemo, IGameHistory } from './game'
 
 export interface ISettingState {
-  size: IGameCoordinates
+  steps: number
   speed: number
 }
 
@@ -12,7 +12,6 @@ export interface IGameState {
   memo: IGameMemo
   history: IGameMemo[]
   gameHistory: IGameHistory
-  step: number
 }
 
 export interface IState {
@@ -25,9 +24,9 @@ export interface ISettingTypes {
 }
 
 export interface IGameTypes {
-  INCREMENT_STEP: reduxTypeConstant
   TOGGLE_GAME_ACTIVE: reduxTypeConstant
   CLEAR_MEMO: reduxTypeConstant
+  CLEAR_HISTORY: reduxTypeConstant
   UPDATE_MEMO: reduxTypeConstant
   DELETE_MEMO: reduxTypeConstant
   SET_MEMO: reduxTypeConstant

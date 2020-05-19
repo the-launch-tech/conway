@@ -1,10 +1,6 @@
 import * as React from 'react'
 
-import { IGameCell, IGameBoard, IGameSettings } from './game'
-
-export interface IMain {}
-
-export interface ISettings {}
+import { IGameCell, IGameSettings } from './game'
 
 export interface IButton {
   onClick: (event: React.MouseEvent) => any
@@ -18,6 +14,7 @@ export interface IContainer {
   children: JSX.Element
   type: string
   layout: string[]
+  flexWidth?: number
 }
 
 export interface IHeader {
@@ -27,17 +24,3 @@ export interface IHeader {
 export interface ITitle {
   text: string
 }
-
-export interface IActionHandlers {}
-
-export interface ICell {
-  rowIndex: string
-  cellIndex: string
-}
-
-export interface IRow {
-  cellIndex: string
-  cells: React.ReactElement[]
-}
-
-export interface IGrid {}

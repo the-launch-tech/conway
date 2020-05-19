@@ -1,9 +1,11 @@
 import { IState } from '../tsconf'
 
+import { STEPS, SPEED } from '../canvas'
+
 export default <IState>{
   Setting: {
-    size: { xLen: 76, yLen: 50 },
-    speed: 200,
+    steps: STEPS,
+    speed: SPEED,
   },
   Game: {
     active: false,
@@ -11,6 +13,5 @@ export default <IState>{
     memo: new Map(),
     history: [],
     gameHistory: {},
-    step: 0,
   },
 }

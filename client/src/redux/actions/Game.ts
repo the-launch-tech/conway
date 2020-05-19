@@ -1,11 +1,6 @@
 import Types from '../types'
 
-import { IAction, IGameCoordinates, ICellCoordinates, IGameCell, IGameMemo } from '../../tsconf'
-
-export const incrementStep = (): IAction => ({
-  type: Types.Game.INCREMENT_STEP,
-  payload: null,
-})
+import { IAction, ICellCoordinates, IGameCell, IGameMemo } from '../../tsconf'
 
 export const toggleGameActive = (payload: boolean): IAction => ({
   type: Types.Game.TOGGLE_GAME_ACTIVE,
@@ -14,6 +9,11 @@ export const toggleGameActive = (payload: boolean): IAction => ({
 
 export const clearMemo = (): IAction => ({
   type: Types.Game.CLEAR_MEMO,
+  payload: null,
+})
+
+export const clearHistory = (): IAction => ({
+  type: Types.Game.CLEAR_HISTORY,
   payload: null,
 })
 

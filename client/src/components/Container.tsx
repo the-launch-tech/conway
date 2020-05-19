@@ -7,12 +7,29 @@ export default Container
 function Container(props: IContainer): JSX.Element {
   if (props.type === 'wrapper') {
     return (
-      <div className={`container ${props.type} ${props.layout.join(' ')}`}>{props.children}</div>
+      <div
+        className={`container ${props.type} ${props.layout.join(' ')}`}
+        style={{ width: props.flexWidth ? `${props.flexWidth}%` : 'auto' }}
+      >
+        {props.children}
+      </div>
     )
   } else if (props.type === 'content') {
     return (
-      <main className={`container ${props.type} ${props.layout.join(' ')}`}>{props.children}</main>
+      <main
+        className={`container ${props.type} ${props.layout.join(' ')}`}
+        style={{ width: props.flexWidth ? `${props.flexWidth}%` : 'auto' }}
+      >
+        {props.children}
+      </main>
     )
   }
-  return <section className={`container ${props.layout.join(' ')}`}>{props.children}</section>
+  return (
+    <section
+      className={`container ${props.layout.join(' ')}`}
+      style={{ width: props.flexWidth ? `${props.flexWidth}%` : 'auto' }}
+    >
+      {props.children}
+    </section>
+  )
 }

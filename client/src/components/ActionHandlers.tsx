@@ -7,19 +7,20 @@ import Actions from '../redux/actions'
 import Button from './Button'
 import Container from './Container'
 
-import { IGameMemo, IState, IActionHandlers, IGameCoordinates } from '../tsconf'
+import { IGameMemo, IState } from '../tsconf'
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<IState, void, Action>) => ({
   toggleGameActive: (active: boolean) => dispatch(Actions.Game.toggleGameActive(active)),
   updateGameHistory: (history: IGameMemo[]) => dispatch(Actions.Game.updateGameHistory(history)),
   clearMemo: () => dispatch(Actions.Game.clearMemo()),
+  clearHistory: () => dispatch(Actions.Game.clearHistory()),
 })
 
 const mapStateToProps = (state: IState) => ({
   active: state.Game.active,
-  size: state.Setting.size,
   history: state.Game.history,
   memo: state.Game.memo,
+  speed: state.Setting.speed,
 })
 
 export default connect(
@@ -28,28 +29,22 @@ export default connect(
 )(ActionHandlers)
 
 function ActionHandlers(
-  props: ReturnType<typeof mapStateToProps> &
-    ReturnType<typeof mapDispatchToProps> &
-    IActionHandlers
+  props: ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
 ): JSX.Element {
-  const { active, size, history, memo } = props
+  const { active, history, memo, speed } = props
 
   function onStartGame(event: React.MouseEvent): void {
-    if (memo.size > 2) {
-      props.toggleGameActive(true)
-    }
+    props.toggleGameActive(true)
   }
 
   function onStopGame(event: React.MouseEvent): void {
     props.toggleGameActive(false)
   }
 
-  function onClearBoard(event: React.MouseEvent): void {
-    if (active) {
-      props.toggleGameActive(false)
-    }
-    props.clearMemo()
+  function onClearAndSave(event?: React.MouseEvent): void {
     props.updateGameHistory(history)
+    props.clearMemo()
+    props.clearHistory()
   }
 
   return (
@@ -71,7 +66,7 @@ function ActionHandlers(
         />
         <Button
           classes={['clear-action']}
-          onClick={onClearBoard}
+          onClick={onClearAndSave}
           isDisabled={active || memo.size === 0}
           label="Clear"
           color="red"

@@ -9,11 +9,13 @@ import './assets/scss/_main.scss'
 
 const wrapper: Element | null = document.getElementById('app')
 
-if (!!wrapper) {
-  ReactDOM.render(
-    <ReactRedux.Provider store={store}>
-      <Main />
-    </ReactRedux.Provider>,
-    wrapper
-  )
-}
+window.addEventListener('load', () => {
+  if (!!wrapper) {
+    ReactDOM.render(
+      <ReactRedux.Provider store={store}>
+        <Main />
+      </ReactRedux.Provider>,
+      wrapper
+    )
+  }
+})

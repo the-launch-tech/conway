@@ -6,10 +6,8 @@ import {
   IAction,
   IState,
   IGameState,
-  IGameCoordinates,
   ICellCoordinates,
   IGameCell,
-  IGameBoard,
   IGameMemo,
   IGameHistory,
 } from '../../tsconf'
@@ -18,12 +16,12 @@ const { log, error } = console
 
 export default (state: IGameState = initialState.Game, action: IAction) => {
   switch (action.type) {
-    case Types.Game.INCREMENT_STEP:
-      return incrementStep(state)
     case Types.Game.TOGGLE_GAME_ACTIVE:
       return toggleGameActive(state, action.payload)
     case Types.Game.CLEAR_MEMO:
       return clearMemo(state)
+    case Types.Game.CLEAR_HISTORY:
+      return clearHistory(state)
     case Types.Game.UPDATE_MEMO:
       return updateMemo(state, action.payload)
     case Types.Game.DELETE_MEMO:
@@ -39,17 +37,16 @@ export default (state: IGameState = initialState.Game, action: IAction) => {
   }
 }
 
-const incrementStep = (state: IGameState): IGameState => {
-  const step: number = state.step + 1
-  return merge.Game(state, { step })
-}
-
 const toggleGameActive = (state: IGameState, payload: IAction['payload']): IGameState => {
   return merge.Game(state, { active: payload })
 }
 
 const clearMemo = (state: IGameState): IGameState => {
   return merge.Game(state, { memo: new Map() })
+}
+
+const clearHistory = (state: IGameState): IGameState => {
+  return merge.Game(state, { history: [] })
 }
 
 const updateMemo = (state: IGameState, payload: IAction['payload']): IGameState => {

@@ -9,7 +9,7 @@ $bgTertiary: #dedede;
 $fontFamily: Helvetica;
 
 .container {
-  max-width: 1170px;
+  max-width: 1340px;
   margin: auto;
 
   &.wrapper {
@@ -26,12 +26,20 @@ $fontFamily: Helvetica;
     display: flex;
   }
 
+  &.flex-wrap {
+    flex-wrap: wrap;
+  }
+
   &.flex-column {
     flex-direction: column;
   }
 
   &.justify-center {
     justify-content: center;
+  }
+
+  &.justify-between {
+    justify-content: space-between;
   }
 
   &.align-center {
