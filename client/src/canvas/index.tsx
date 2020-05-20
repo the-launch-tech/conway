@@ -2,7 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 
 import Engine from './Engine'
-import { mapStateToProps, mapDispatchToProps, Props } from './config'
+import { mapStateToProps, mapDispatchToProps, Props, State } from './config'
 
 import {
   IGameCell,
@@ -13,21 +13,24 @@ import {
   IEngine,
 } from '../tsconf/index'
 
-export const SIZE = 800
-export const STEPS = 160
+const { innerWidth, innerHeight } = window
+const SQUARE = innerWidth - 40 > innerHeight - 160 ? innerHeight - 160 : innerWidth - 40
+export const STEPS = 100
 export const SPEED = 10
 
 const GameEngine: IEngine = new Engine({
-  size: SIZE,
+  width: SQUARE,
+  height: SQUARE,
   steps: STEPS,
 })
 
-class Canvas extends React.Component<Props, never> {
+class Canvas extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
     GameEngine.loadProps({
-      size: SIZE,
+      width: SQUARE,
+      height: SQUARE,
       steps: STEPS,
       styles: {
         cellStroke: '#75c2dc', // blue
@@ -50,14 +53,20 @@ class Canvas extends React.Component<Props, never> {
     this.onActiveChange = this.onActiveChange.bind(this)
     this.onStepsChange = this.onStepsChange.bind(this)
     this.onGameHistoryChange = this.onGameHistoryChange.bind(this)
+    this.onResize = this.onResize.bind(this)
+
+    this.state = {
+      square: SQUARE,
+    }
   }
 
   componentDidMount(): void {
     GameEngine.drawBoardCanvas()
     GameEngine.listenForMouseEvents('click', this.toggleCellActive)
+    window.addEventListener('resize', this.onResize)
   }
 
-  componentDidUpdate(prevProps: Props, prevState: never): void {
+  componentDidUpdate(prevProps: Props, prevState: State): void {
     if (prevProps.active !== this.props.active) {
       this.onActiveChange()
     }
@@ -69,6 +78,17 @@ class Canvas extends React.Component<Props, never> {
     }
   }
 
+  onResize(event: UIEvent): void {
+    const { innerWidth, innerHeight } = window
+    let square = innerWidth - 40 > innerHeight - 160 ? innerHeight - 160 : innerWidth - 40
+    this.setState({ square }, () => {
+      GameEngine.loadProps({
+        width: square,
+        height: square,
+      })
+    })
+  }
+
   onActiveChange() {
     if (this.props.active) {
       this.start()
@@ -77,9 +97,7 @@ class Canvas extends React.Component<Props, never> {
 
   onStepsChange() {
     this.props.clearMemo()
-    GameEngine.loadProps({
-      steps: this.props.steps,
-    })
+    GameEngine.loadProps({ steps: this.props.steps })
     GameEngine.clearCellCanvas()
     GameEngine.drawBoardCanvas()
   }
@@ -140,7 +158,8 @@ class Canvas extends React.Component<Props, never> {
     return (
       <div
         ref={this.createCanvasRef}
-        style={{ position: 'relative', height: SIZE, width: SIZE }}
+        className="canvas-wrapper"
+        style={{ width: this.state.square, height: this.state.square }}
       ></div>
     )
   }

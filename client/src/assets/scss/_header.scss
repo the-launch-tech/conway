@@ -1,0 +1,141 @@
+.header {
+  height: 70px;
+  padding: 1rem;
+  background-color: $bgPrimary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .header-container {
+    width: 100%;
+    max-width: 1170px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .header-left {
+      .title {
+        color: $text;
+        font-family: $fontFamily;
+        cursor: default;
+        margin: 0 1rem 0 0;
+
+        @media (max-width: 991px) {
+          font-size: 1.2rem;
+          margin: 0 0.75rem 0 0;
+        }
+
+        @media (max-width: 599px) {
+          font-size: 1rem;
+          margin: 0 0.5rem 0 0;
+        }
+      }
+
+      .instructions {
+        font-size: 0.8rem;
+        text-decoration: none;
+        color: $success;
+        transition: 0.2s;
+        cursor: pointer;
+        font-family: $fontFamily;
+
+        &:visited {
+          color: $success;
+        }
+
+        &:hover {
+          color: transparentize($success, 0.7);
+        }
+
+        &:active {
+          color: transparentize($success, 0.3);
+        }
+      }
+    }
+
+    .settings {
+      form {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          margin-right: 1rem;
+          position: relative;
+
+          label {
+            color: $text;
+            font-family: $fontFamily;
+            font-size: 0.7rem;
+            margin-bottom: 0.3rem;
+          }
+
+          select {
+            height: 30px;
+            border-radius: 4px;
+            border: solid 1px $bgTertiary;
+            color: $text;
+            background-color: $bgPrimary;
+            outline: none;
+            padding: 0 0.3rem;
+            width: 100%;
+          }
+
+          input {
+            height: 30px;
+            border-radius: 4px;
+            border: solid 1px $bgTertiary;
+            color: $text;
+            background-color: $bgPrimary;
+            outline: none;
+            padding: 0 0.3rem;
+            width: 100%;
+          }
+
+          div {
+            position: absolute;
+            top: 100%;
+            font-size: 0.55rem;
+            color: $alert;
+            font-family: $fontFamily;
+            width: 100%;
+            margin: 0;
+          }
+        }
+
+        button {
+          height: 30px;
+          border-radius: 4px;
+          border: solid 2px $good;
+          background-color: $bgPrimary;
+          color: $good;
+          transition: 0.2s;
+          cursor: pointer;
+          outline: none;
+
+          &:disabled {
+            border: solid 2px transparentize($text, 0.75);
+            background-color: $bgPrimary;
+            color: transparentize($text, 0.75);
+          }
+
+          &:hover {
+            border: solid 2px transparentize($good, 0.5);
+            background-color: $bgPrimary;
+            color: transparentize($good, 0.5);
+          }
+
+          &:active {
+            border: solid 2px $good;
+            background-color: $good;
+            color: $bgPrimary;
+          }
+        }
+      }
+    }
+  }
+}

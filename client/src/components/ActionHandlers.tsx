@@ -5,7 +5,6 @@ import { Action } from 'redux'
 
 import Actions from '../redux/actions'
 import Button from './Button'
-import Container from './Container'
 
 import { IGameMemo, IState } from '../tsconf'
 
@@ -48,30 +47,28 @@ function ActionHandlers(
   }
 
   return (
-    <Container type="block" layout={['flex-wrap', 'align-center', 'justify-center']}>
-      <React.Fragment>
-        <Button
-          classes={['run-action']}
-          onClick={onStartGame}
-          isDisabled={active || memo.size < 3}
-          label="Run Game of Life"
-          color="green"
-        />
-        <Button
-          classes={['stop-action']}
-          onClick={onStopGame}
-          isDisabled={!active}
-          label="Stop"
-          color="orange"
-        />
-        <Button
-          classes={['clear-action']}
-          onClick={onClearAndSave}
-          isDisabled={active || memo.size === 0}
-          label="Clear"
-          color="red"
-        />
-      </React.Fragment>
-    </Container>
+    <div className="footer-container">
+      <Button
+        classes={['run-action']}
+        onClick={onStartGame}
+        isDisabled={active || memo.size < 3}
+        label="Run Game of Life"
+        color="green"
+      />
+      <Button
+        classes={['stop-action']}
+        onClick={onStopGame}
+        isDisabled={!active}
+        label="Stop"
+        color="orange"
+      />
+      <Button
+        classes={['clear-action']}
+        onClick={onClearAndSave}
+        isDisabled={active || memo.size === 0}
+        label="Clear"
+        color="red"
+      />
+    </div>
   )
 }

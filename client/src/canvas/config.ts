@@ -27,3 +27,7 @@ export const mapStateToProps = (state: IState) => ({
 })
 
 export type Props = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
+
+export interface State {
+  square: number
+}

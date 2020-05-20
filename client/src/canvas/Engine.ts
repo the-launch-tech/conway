@@ -27,10 +27,10 @@ export default class Engine {
   public ref: any
 
   constructor(defaults: IDefaultProps) {
-    this.width = defaults.size
-    this.height = defaults.size
+    this.width = Math.floor(defaults.width / 10) * 10
+    this.height = Math.floor(defaults.height / 10) * 10
     this.steps = defaults.steps
-    this.step = this.width / this.steps
+    this.step = this.calculateStepSize()
     this.ref = null
     this.container = null
     this.styles = {
@@ -51,14 +51,6 @@ export default class Engine {
     this.cellCanvas.id = 'cell-canvas'
     this.boardContext = this.boardCanvas.getContext('2d')
     this.cellContext = this.cellCanvas.getContext('2d')
-    this.boardCanvas.style.position = 'absolute'
-    this.boardCanvas.style.left = 0
-    this.boardCanvas.style.right = 0
-    this.boardCanvas.style.zIndex = 0
-    this.cellCanvas.style.position = 'absolute'
-    this.cellCanvas.style.left = 0
-    this.cellCanvas.style.right = 0
-    this.cellCanvas.style.zIndex = 1
     this.boardCanvas.width = this.width
     this.boardCanvas.height = this.height
     this.cellCanvas.width = this.width
@@ -83,14 +75,29 @@ export default class Engine {
     }
     if (props.steps) {
       this.steps = props.steps
-      this.step = this.width / this.steps
+      this.step = this.calculateStepSize()
       this.clearCellCanvas()
       this.clearBoardCanvas()
+      this.drawBoardCanvas(true)
+    }
+    if (props.width && props.height) {
+      this.width = Math.floor(props.width / 10) * 10
+      this.height = Math.floor(props.height / 10) * 10
+      this.cellCanvas.width = this.width
+      this.cellCanvas.height = this.height
+      this.boardCanvas.width = this.width
+      this.boardCanvas.height = this.height
+      this.step = this.calculateStepSize()
+      this.clearCellCanvas()
       this.drawBoardCanvas(true)
     }
     if (props.callbacks) {
       this.callbacks = props.callbacks
     }
+  }
+
+  calculateStepSize(): number {
+    return Math.floor(this.width / this.steps)
   }
 
   findEventTargetCoordinates(event: React.MouseEvent, container: React.ElementRef<any>): number[] {
@@ -123,24 +130,27 @@ export default class Engine {
     if (clear) {
       this.boardContext.clearRect(0, 0, this.width, this.height)
     }
-    console.log(this.width, this.steps)
+    let xIndex = 0
     for (let x = 0; x <= this.width; x += this.step) {
       this.boardContext.beginPath()
       this.boardContext.moveTo(x, 0)
-      this.boardContext.lineTo(x, this.height)
+      this.boardContext.lineTo(x, this.height - (this.height % this.step))
       this.boardContext.strokeStyle =
-        x % (10 * this.step) === 0 ? this.styles.gridDarkStroke : this.styles.gridLightStroke
+        xIndex % 10 === 0 ? this.styles.gridDarkStroke : this.styles.gridLightStroke
       this.boardContext.lineWidth = this.styles.gridStrokeWidth
       this.boardContext.stroke()
+      xIndex++
     }
+    let yIndex = 0
     for (let y = 0; y <= this.height; y += this.step) {
       this.boardContext.beginPath()
       this.boardContext.moveTo(0, y)
       this.boardContext.lineTo(this.width, y)
       this.boardContext.strokeStyle =
-        y % (10 * this.step) === 0 ? this.styles.gridDarkStroke : this.styles.gridLightStroke
+        yIndex % 10 === 0 ? this.styles.gridDarkStroke : this.styles.gridLightStroke
       this.boardContext.lineWidth = this.styles.gridStrokeWidth
       this.boardContext.stroke()
+      yIndex++
     }
     this.cellContext.fillStyle = this.styles.cellFill
     this.cellContext.strokeStyle = this.styles.cellStroke

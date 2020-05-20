@@ -1,0 +1,26 @@
+.container {
+  width: 100vw;
+  height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .canvas-wrapper {
+    position: relative;
+    margin-top: 20px;
+
+    #board-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+    #cell-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      border: solid 1px $bgTertiary;
+    }
+  }
+}

@@ -2,39 +2,34 @@ import * as React from 'react'
 
 import ActionHandlers from './components/ActionHandlers'
 import Settings from './components/Settings'
-import Header from './components/Header'
-import Title from './components/Title'
-import Container from './components/Container'
 import Canvas from './canvas'
 
 export default Main
 
 function Main(props: {}): JSX.Element {
   return (
-    <Container type="wrapper" layout={['flex-column', 'justify-center', 'align-center']}>
-      <React.Fragment>
-        <Header>
-          <Title text="Conway's Game of Life" />
-        </Header>
-        <Container type="content" layout={['flex', 'flex-wrap', 'justify-between', 'align-start']}>
-          <React.Fragment>
-            <Container
-              type="pane"
-              layout={['flex-column', 'align-start', 'justify-start']}
-              flexWidth={70}
+    <div className="wrapper">
+      <header className="header">
+        <div className="header-container">
+          <div className="header-left">
+            <h3 className="title">Conway's Game of Life</h3>
+            <a
+              className="instructions"
+              href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life"
+              target="_blank"
             >
-              <React.Fragment>
-                <Settings />
-                <Canvas />
-                <ActionHandlers />
-              </React.Fragment>
-            </Container>
-            <Container type="pane" layout={['align-start']} flexWidth={30}>
-              <div></div>
-            </Container>
-          </React.Fragment>
-        </Container>
-      </React.Fragment>
-    </Container>
+              Playground Rules
+            </a>
+          </div>
+          <Settings />
+        </div>
+      </header>
+      <main className="container">
+        <Canvas />
+      </main>
+      <footer className="footer">
+        <ActionHandlers />
+      </footer>
+    </div>
   )
 }

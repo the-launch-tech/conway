@@ -9,7 +9,6 @@ export default <IState>{
   },
   Game: {
     active: false,
-    board: new Map(),
     memo: new Map(),
     history: [],
     gameHistory: {},

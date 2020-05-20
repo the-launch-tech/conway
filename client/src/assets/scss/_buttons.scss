@@ -1,0 +1,100 @@
+.btn {
+  border: solid 2px;
+  outline: none;
+  transition: 0.2s;
+  border-radius: 4px;
+  padding: 0.5rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 200;
+  cursor: pointer;
+  font-family: $fontFamily;
+  margin-right: 1rem;
+
+  @media (max-width: 991px) {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.8rem;
+    margin-right: 0.6rem;
+  }
+
+  @media (max-width: 599px) {
+    padding: 0.4rem 1.25rem;
+    font-size: 0.7rem;
+    margin-right: 0.45rem;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &.btn-orange {
+    color: $bgPrimary;
+    border-color: $warning;
+    background-color: $warning;
+
+    &:hover {
+      color: $warning;
+      border-color: $warning;
+      background-color: $bgPrimary;
+    }
+
+    &:active {
+      color: transparentize($warning, 0.7);
+      border-color: transparentize($warning, 0.7);
+      background-color: $bgPrimary;
+    }
+
+    &:disabled {
+      color: $warning;
+      border-color: transparentize($warning, 0.6);
+      background-color: transparentize($warning, 0.9);
+    }
+  }
+
+  &.btn-green {
+    color: $bgPrimary;
+    border-color: $success;
+    background-color: $success;
+
+    &:hover {
+      color: $success;
+      border-color: $success;
+      background-color: $bgPrimary;
+    }
+
+    &:active {
+      color: transparentize($success, 0.7);
+      border-color: transparentize($success, 0.7);
+      background-color: $bgPrimary;
+    }
+
+    &:disabled {
+      color: $success;
+      border-color: transparentize($success, 0.6);
+      background-color: transparentize($success, 0.9);
+    }
+  }
+
+  &.btn-red {
+    color: $bgPrimary;
+    border-color: $alert;
+    background-color: $alert;
+
+    &:hover {
+      color: $alert;
+      border-color: $alert;
+      background-color: $bgPrimary;
+    }
+
+    &:active {
+      color: transparentize($alert, 0.7);
+      border-color: transparentize($alert, 0.7);
+      background-color: $bgPrimary;
+    }
+
+    &:disabled {
+      color: $alert;
+      border-color: transparentize($alert, 0.6);
+      background-color: transparentize($alert, 0.9);
+    }
+  }
+}

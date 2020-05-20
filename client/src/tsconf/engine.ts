@@ -1,8 +1,9 @@
 import { IGameCell, IGameMemo } from './game'
 
 export interface IDefaultProps {
+  width: number
+  height: number
   steps: number
-  size: number
 }
 
 export interface ICallbacks {
@@ -21,7 +22,8 @@ export interface IStyles {
 
 export interface IEngineOps {
   steps?: number
-  size?: number
+  width?: number
+  height?: number
   callbacks?: ICallbacks
   styles?: IStyles
 }

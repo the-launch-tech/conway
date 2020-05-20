@@ -1,0 +1,16 @@
+.footer {
+  height: 50px;
+  padding: 1rem;
+  background-color: $bgPrimary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .footer-container {
+    width: 100%;
+    max-width: 1170px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
