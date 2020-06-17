@@ -26,9 +26,8 @@ The Game of Life, also known simply as Life, is a cellular automaton devised by 
 4. Based on the number of recurrences use conditional logic to apply the life/death/birth rule set.
 5. Diff against the previous hash table of active cells, cloning the hash table and updating it accordingly.
 
-- By only storing the active cells of each frame, rather than a picture of the board, we can apply those active cells against the rule set at each frame. This reduces the potentially overwhelming runtime.
+- By only storing the active cells of each frame, rather than a picture of the board, we can apply those active cells against the rule set at each frame. This reduces the potentially overwhelming runtime, and is a novel approach to writing the CGoL algorithm.
 
-1. For the ReactJS rendering of the `<Grid />`, use `React.useMemo(() => {}, boardSize)` on the rows and columns to reduce the re-rendering of the `<Row />` and `<Cell />` components.
 
 ### TODO
 
