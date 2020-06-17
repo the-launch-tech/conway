@@ -30,7 +30,7 @@ The Game of Life, also known simply as Life, is a cellular automaton devised by 
 ```
 /client/src/canvas/Engine.ts, ln. 167
 
-theGameOfLife(): Array<string[]> {
+theGameOfLife(): string[][] {
   let groups: IGameCell[] = []
 
   for (let { x, y } of this.callbacks.memoValues()) {
