@@ -55,6 +55,7 @@ Object.keys(recurrences).map((key: string): void => {
     this.fillCell(cell)
   }
 })
+
 return [born, dead]
 ```
 
