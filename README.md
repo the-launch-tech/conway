@@ -28,35 +28,39 @@ The Game of Life, also known simply as Life, is a cellular automaton devised by 
 
 - By only storing the active cells of each frame, rather than a picture of the board, we can apply those active cells against the rule set at each frame. This reduces the potentially overwhelming runtime, and is a novel approach to writing the CGoL algorithm.
 ```
-let groups: IGameCell[] = []
+/client/src/canvas/Engine.ts, ln. 167
 
-for (let { x, y } of this.callbacks.memoValues()) {
-  groups.push(...neighbor cells from memo)
-}
+theGameOfLife(): Array<string[]> {
+  let groups: IGameCell[] = []
 
-const recurrences = groups.reduce((acc: IRecurrences, cell: IGameCell): IRecurrences => {
-  const key: string = `${cell.x}-${cell.y}`
-  acc[key] = !!acc[key] ? acc[key] + 1 : 1
-  return acc
-}, {})
-
-let born: string[] = []
-let dead: string[] = []
-Object.keys(recurrences).map((key: string): void => {
-  const [x, y]: string[] = key.split('-')
-  const cell: IGameCell = { x: parseInt(x), y: parseInt(y), active: true }
-  const count: number = recurrences[key]
-  const living: boolean = this.callbacks.memoHas(key)
-  if (this.cellDeath(living, count)) {
-    dead.push(key)
-    this.unfillCell(cell)
-  } else if (this.cellBirth(living, count)) {
-    born.push(key)
-    this.fillCell(cell)
+  for (let { x, y } of this.callbacks.memoValues()) {
+    groups.push(...neighbor cells from memo)
   }
-})
 
-return [born, dead]
+  const recurrences = groups.reduce((acc: IRecurrences, cell: IGameCell): IRecurrences => {
+    const key: string = `${cell.x}-${cell.y}`
+    acc[key] = !!acc[key] ? acc[key] + 1 : 1
+    return acc
+  }, {})
+
+  let born: string[] = []
+  let dead: string[] = []
+  Object.keys(recurrences).map((key: string): void => {
+    const [x, y]: string[] = key.split('-')
+    const cell: IGameCell = { x: parseInt(x), y: parseInt(y), active: true }
+    const count: number = recurrences[key]
+    const living: boolean = this.callbacks.memoHas(key)
+    if (this.cellDeath(living, count)) {
+      dead.push(key)
+      this.unfillCell(cell)
+    } else if (this.cellBirth(living, count)) {
+      born.push(key)
+      this.fillCell(cell)
+    }
+  })
+
+  return [born, dead]
+}
 ```
 
 
