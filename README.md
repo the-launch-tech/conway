@@ -27,7 +27,7 @@ The Game of Life, also known simply as Life, is a cellular automaton devised by 
 5. Diff against the previous hash table of active cells, cloning the hash table and updating it accordingly.
 
 - By only storing the active cells of each frame, rather than a picture of the board, we can apply those active cells against the rule set at each frame. This reduces the potentially overwhelming runtime, and is a novel approach to writing the CGoL algorithm.
-```
+```typescript
 /client/src/canvas/Engine.ts, ln. 167
 
 theGameOfLife(): string[][] {
